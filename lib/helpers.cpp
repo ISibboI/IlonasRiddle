@@ -18,7 +18,7 @@ bool check_equation(const std::string& equation) {
     } else {
         const auto left_result = evaluate_term(left_term);
         const auto right_result = evaluate_term(right_term);
-        return evaluate_term(left_term) == evaluate_term(right_term) && left_result != -1;
+        return left_result == right_result && left_result != -1;
     }
 }
 

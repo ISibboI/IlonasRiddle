@@ -25,7 +25,7 @@ void evaluate_permutations(const size_t offset, std::vector<char>& characters) {
 int main() {
     std::vector<char> characters{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '='};
     // std::vector<char> characters{'1', '1', '+', '=', '2'};
-    
+
     for (size_t i = 0; i < characters.size(); i++) {
         std::swap(characters[0], characters[i]);
 #pragma omp parallel for firstprivate(characters)
