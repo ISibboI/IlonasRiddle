@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.9)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
 PROJECT(IlonasRiddle)
 
 SET(CMAKE_CXX_STANDARD 14)
@@ -22,3 +22,17 @@ ADD_EXECUTABLE(evaluate_term tests/evaluate_term.cpp)
 TARGET_LINK_LIBRARIES(evaluate_term riddlelib)
 
 ADD_TEST(NAME valid_term COMMAND evaluate_term 432+754-223-5+4+1-6 957)
+ADD_TEST(NAME double_operator_term COMMAND evaluate_term 432+754+-223-5+4+1-6 957)
+ADD_TEST(NAME begin_operator_term COMMAND evaluate_term +45+5-1 49)
+ADD_TEST(NAME end_operator_term COMMAND evaluate_term 45+5-1+ 49)
+ADD_TEST(NAME no_operator_term COMMAND evaluate_term 45 45)
+ADD_TEST(NAME empty_term COMMAND evaluate_term "" 0)
+SET_TESTS_PROPERTIES(
+        double_operator_term
+        begin_operator_term
+        end_operator_term
+        empty_term
+        PROPERTIES WILL_FAIL 1)
+SET_TESTS_PROPERTIES(
+        valid_term
+        PROPERTIES FIXTURES_REQUIRED evaluate_term)
